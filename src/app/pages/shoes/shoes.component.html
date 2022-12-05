@@ -1,0 +1,15 @@
+<section id="shoes-page" class="p-5">
+  <div class="text-center">
+    <h3>Shoe Page</h3>
+  </div>
+  <div class="row mt-5">
+    <app-shoes-form [(shoe)]="shoe"></app-shoes-form>
+  </div>
+  <div class="mt-5">
+    <app-shoes-list
+      [shoes]="shoes"
+      (deleteShoe)="onDeleteShoe($event)"
+      (editShoe)="onEditShoe($event)"
+    ></app-shoes-list>
+  </div>
+</section>

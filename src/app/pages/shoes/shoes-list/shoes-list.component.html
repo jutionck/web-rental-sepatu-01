@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Shoe List</h5>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Sepatu</th>
+            <th>Nama Peminjam</th>
+            <th>Durasi</th>
+            <th>Tgl. Pinjam</th>
+            <th>Tgl. Kembali</th>
+            <th>Total Bayar</th>
+            <th>Total Denda</th>
+            <th>Kondisi Sepatu</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let shoe of shoes">
+            <td>{{ shoe.id }}</td>
+            <td>{{ shoe.shoe }}</td>
+            <td>{{ shoe.wearer }}</td>
+            <td>{{ shoe.duration }}</td>
+            <td>{{ shoe.borrowedAt }}</td>
+            <td>{{ shoe.returnedAt }}</td>
+            <td>{{ shoe.payment }}</td>
+            <td>{{ shoe.fine }}</td>
+            <td>{{ shoe.condition }}</td>
+            <td>{{ shoe.status }}</td>
+            <td>
+              <div class="btn-group">
+                <button
+                  class="btn btn-outline-success"
+                  (click)="onEditShoe(shoe)"
+                >
+                  EDIT
+                </button>
+                <button
+                  class="btn btn-outline-danger"
+                  (click)="onDeleteShoe(shoe)"
+                >
+                  HAPUS
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="!shoes || (shoes && shoes.length === 0)">
+            <td colspan="11" class="text-center text-muted font-weight-bold">
+              Tidak ada data
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

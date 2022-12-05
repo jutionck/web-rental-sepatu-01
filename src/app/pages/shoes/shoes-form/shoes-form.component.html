@@ -1,0 +1,153 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>Shoe Form</h5>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="shoeForm" (ngSubmit)="onSubmitShoe()">
+      <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Sepatu</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            formControlName="shoe"
+            class="form-control"
+            id="staticEmail"
+            placeholder="Tuliskan jenis sepatu"
+            [readOnly]="shoeForm.value.id"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Nama Peminjam</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="text"
+            formControlName="wearer"
+            class="form-control"
+            id="inputPassword"
+            placeholder="Tuliskan nama peminjam"
+            [readOnly]="shoeForm.value.id"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Tanggal Pinjam</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="date"
+            formControlName="borrowedAt"
+            class="form-control"
+            id="inputPassword"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Durasi Pinjam</label
+        >
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            formControlName="duration"
+          >
+            <option value="1" selected>1 Hari</option>
+            <option value="2">2 Hari</option>
+            <option value="3">3 Hari</option>
+          </select>
+        </div>
+      </div>
+      <ng-container *ngIf="shoeForm.value.id">
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >Tanggal Kembali</label
+          >
+          <div class="col-sm-10">
+            <input type="date" formControlName="returnedAt" class="form-control" id="inputPassword" (input)="onSetStatus($event)" />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >Kondisi Sepatu</label
+          >
+          <div class="col-sm-10">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              formControlName="condition"
+              (change)="onSetFine($event)"
+            >
+              <option value="Baik">Baik</option>
+              <option value="Rusak">Rusak</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Status</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              readonly
+              class="form-control"
+              id="staticEmail"
+              placeholder="Status (Kembali, Telat)"
+              formControlName="status"
+              [readOnly]="shoeForm.value.id"
+              [value]="isStatus"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Total Bayar</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="number"
+              readonly
+              class="form-control"
+              id="staticEmail"
+              placeholder="Total bayar"
+              formControlName="payment"
+              [readOnly]="shoeForm.value.id"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Total Denda</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="number"
+              readonly
+              class="form-control"
+              id="staticEmail"
+              placeholder="Total denda"
+              formControlName="fine"
+              [readOnly]="shoeForm.value.id"
+              [value]="fineTotal"
+            />
+          </div>
+        </div>
+      </ng-container>
+      <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+          <button class="btn btn-outline-success" [disabled]="!shoeForm.valid">
+            SIMPAN</button
+          >&nbsp;
+          <button class="btn btn-outline-warning">BATAL</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

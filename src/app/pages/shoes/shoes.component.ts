@@ -24,7 +24,9 @@ export class ShoesComponent implements OnInit {
 
   onLoadShoe(): void {
     const sessionShoe: string = this._storage.getItem('shoe') as string;
-    this.shoes = JSON.parse(sessionShoe);
+    const shoes: Shoe[] = sessionShoe ? JSON.parse(sessionShoe) : [];
+    this.shoes = shoes;
+    sessionStorage.setItem('shoe', JSON.stringify(this.shoes));
   }
 
   onSaveShoe(shoe: Shoe): void {
@@ -48,7 +50,7 @@ export class ShoesComponent implements OnInit {
         this.shoes.splice(index, 1);
       }
     }
-    sessionStorage.setItem('shoe', JSON.stringify(this.shoes))
+    sessionStorage.setItem('shoe', JSON.stringify(this.shoes));
   }
 
   onEditShoe(shoe: Shoe): void {
